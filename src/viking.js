@@ -67,19 +67,34 @@ class War {
     }
 
     vikingAttack(){
-        if(this.vikingArmy.length ===0 && !this.saxonArmy.length === 0){
-            return null
+
+        let saxonNumber = Math.floor(Math.random()*this.saxonArmy.length)
+        let vikingNumber = Math.floor(Math.random()*this.vikingArmy.length)
+
+        let viking = this.vikingArmy[vikingNumber]
+        console.log(this.saxonArmy, this.vikingArmy);
+        const damage = this.saxonArmy[saxonNumber].receiveDamage(viking.attack())
+        if(this.saxonArmy[saxonNumber].health <= 0){
+            this.saxonArmy.splice(this.saxonArmy[saxonNumber], 1)
+    
         }
-
-        let saxonRandom = Math.floor(Math.random()*this.saxonArmy.length)
-        let vikingRandom = Math.floor(Math.random()*this.vikingArmy.length)
-
-        const damage = saxonRandom.receiveDamage(vikingRandom.strength)
+        console.log(damage)
+        
         return damage
-       
     }
     saxonAttack(){
+        let saxonNumber = Math.floor(Math.random()*this.saxonArmy.length)
+        let vikingNumber = Math.floor(Math.random()*this.vikingArmy.length)
 
+        let saxon = this.saxonArmy[saxonNumber]
+       
+        const damage = this.vikingArmy[vikingNumber].receiveDamage(saxon.attack())
+        if(this.vikingArmy[saxonNumber].health <= 0){
+            this.vikingArmy.splice(this.vikingArmy[saxonNumber], 1)
+    
+        }
+        
+        return damage
     }
     showStatus(){
 
